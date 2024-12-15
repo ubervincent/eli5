@@ -26,17 +26,22 @@ function Profile() {
   )
 }
 
+type Question = {
+  name: string
+  href: string
+}
+
 async function QuestionSection() {
   const response = await fetch('http://localhost:8000/questions');
-  const concepts = await response.json();
+  const questions = await response.json();
 
   return (
     <section className="concept-section">
         {
-          concepts.map(concept => (
+          questions.map((question: Question) => (
             <Concept
-              name={concept.name}
-              href={concept.href}
+              name={question.name}
+              href={question.href}
             ></Concept>
           ))
         }
