@@ -1,32 +1,35 @@
-import Image from "next/image";
 import Link from "next/link";
-import concepts from "./mockData.json"
 
 export default function Home() {
 
   return (
-    <>
+    <div className="main">
       <div className="header">
         <h1>Eli5 Programming</h1>
         <button>Menu</button> 
       </div>
-      <main className="main">
-        <Profile></Profile>
-        <ConceptSection></ConceptSection>
-      </main>
-    </>
+      <div>
+
+      <Profile></Profile>
+      <QuestionSection></QuestionSection>
+      </div>
+      <QuestionBox></QuestionBox>
+    </div>
   );
 }
 
 function Profile() {
  return (
     <section className="profile">
-      <h1>Hello World</h1>
+      <h1>Date</h1>
     </section>
   )
 }
 
-function ConceptSection() {
+async function QuestionSection() {
+  const response = await fetch('http://localhost:8000/questions');
+  const concepts = await response.json();
+
   return (
     <section className="concept-section">
         {
@@ -50,3 +53,10 @@ function Concept({ name, href }: { name: string; href: string }) {
   )
 }
 
+function QuestionBox() {
+  return (
+    <form className="question-form">
+      <input name="question" placeholder="What's Your Stupid Question?"></input>
+    </form>
+  )
+}
