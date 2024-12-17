@@ -32,7 +32,7 @@ type Question = {
 }
 
 async function QuestionSection() {
-  const response = await fetch('http://localhost:8000/questions');
+  const response = await fetch('https://eli5-198172538965.us-central1.run.app/questions');
   const questions = await response.json();
 
   return (
